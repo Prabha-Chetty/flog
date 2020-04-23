@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% block sub_content %}
+<form class="form-horizontal" method="POST">
+  <div class="form-group">
+    <label class="control-label col-sm-2">Statename</label>
+      <div class="col-sm-5">
+        <input class="form-control" type="text" name="statename"/>
+      </div>
+  </div>
+  <div class="form-group">
+      <div class="col-sm-offset-2 col-sm-10">
+        <button class="btn btn-primary" type="submit">Search</button>
+      </div>
+  </div>
+</form>
+  {% if contents %}
+  <table border="1">
+      <tr>
+      <th colspan="2">Slno</th>
+      <th colspan="2">State</th>
+      <th colspan="2">Confirmed Cases </th>
+      <th colspan="2">Active cases</th>
+      <th colspan="2">Deaths</th>
+      <th colspan="2">Recovered Cases</th>
+      <th colspan="2">Last Updated Time</th>
+    </tr>
+    {% for content in contents %}
+      <tr>
+        <td colspan="2">{{loop.index}}</td>
+        <td colspan="2">{{content['state']}}</td>
+        <td colspan="2">{{content['confirmed']}}</td>
+        <td colspan="2">{{content['active']}}</td>
+        <td colspan="2">{{content['deaths']}}</td>
+        <td colspan="2">{{content['recovered']}}</td>
+        <td colspan="2">{{content['lastupdatedtime']}}</td>
+      </tr>
+    {% endfor %}
+  </table>
+  {% endif %}
+{% endblock %}

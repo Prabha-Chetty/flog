@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% block sub_content %}
+  {% if blogs %}
+   {% for blog in blogs %}
+    <h3><a href="/blogs/{{blog['blog_id']}}">{{blog['title']}} </a></h3>
+    <h5>Written By {{blog['author']}} </h5>
+
+    <hr>
+    {% endfor %}
+  {% else %}
+    <h3>No blogs have been written yet.</h3>
+  {% endif %}
+
+  {% if contents %}
+  <table border="1">
+      <tr>
+      <th colspan="2">Slno</th>
+      <th colspan="2">State</th>
+      <th colspan="2">Confirmed Cases </th>
+      <th colspan="2">Active cases</th>
+      <th colspan="2">Deaths</th>
+      <th colspan="2">Recovered Cases</th>
+      <th colspan="2">Last Updated Time</th>
+    </tr>
+    {% for content in contents['statewise'] %}
+      <tr>
+        <td colspan="2">{{loop.index}}</td>
+        <td colspan="2">{{content['state']}}</td>
+        <td colspan="2">{{content['confirmed']}}</td>
+        <td colspan="2">{{content['active']}}</td>
+        <td colspan="2">{{content['deaths']}}</td>
+        <td colspan="2">{{content['recovered']}}</td>
+        <td colspan="2">{{content['lastupdatedtime']}}</td>
+      </tr>
+    {% endfor %}
+  </table>
+  {% endif %}
+{% endblock %}
